@@ -1,13 +1,55 @@
 .App {
   text-align: center;
   padding-top: 33px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family:'Lucida Casual', 'Comic Sans MS';
 }
 
 .App div{
     width: 500px;
     margin: auto;
-    text-align: start;
+}
+.cards{
+  width: 370px !important;
+  height: 170px;
+  position: relative;
+  float: left;
+  margin-top: 40px !important;
+  margin-left: 30px !important;
+  background-color:#d1d3d6;
+  background-image: linear-gradient(to right,#d1d3d6 , rgb(241, 241, 239)); /* Standard syntax (must be last) */
+
+}
+.noteLeft{
+  text-align: left;
+  padding-left: 20px;
+}
+.red{
+  border-left: 15px solid rgb(192, 106, 106);
+}
+.green{
+  border-left: 15px solid rgb(100, 202, 100);
+
+}
+.blue{
+  border-left: 15px solid rgb(110, 110, 172);
+}
+.yellow{
+  border-left: 15px solid rgb(203, 224, 110);
+}
+.purple{
+  border-left: 15px solid rgb(182, 110, 224);
+}
+button{
+  cursor: pointer;
+  text-align: center;
+  background-color: rgb(112, 174, 245);
+  border-width: 0px;
+  height: 33px;
+  color: #fff;
+  font-size: 11px;
+  width: 100px;
+  border-radius: 4px;
+
 }
 label{
   display: block;
