@@ -23,7 +23,6 @@ class App extends Component {
     this.mouseEnter = this.mouseEnter.bind(this)
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeText = this.handleChangeText.bind(this)
-    this.handleEdit = this.handleEdit.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
   }
   handleChange(e){
@@ -87,8 +86,13 @@ class App extends Component {
       res[i] = elementVisible
       this.setState({cards:res});
   }
-  handleEdit(index){
-  
+  removeHandler = (i) =>{
+    let res = [...this.state.cards]
+    let data = res.filter((data,ind)=>ind !== i)
+    console.log(data)
+    this.setState({
+      cards:data
+    })
   }
   openModalHandler = (index) => {
     let textBodyModal = this.state.cards.filter((data,i)=>index == i)
@@ -96,7 +100,7 @@ class App extends Component {
       isShowing: true,
       textBody:textBodyModal[0]
     })
-}
+  }
 
 closeModalHandler = () => {
     this.setState({
@@ -108,7 +112,13 @@ closeModalHandler = () => {
     let res = [];
      this.state.cards.forEach((data,i)=>{
     let classBorder = 'cards ' + [data.class];
-      let edit = (<span><i className="fa fa-pencil icon" onClick={()=>this.openModalHandler(i)}></i> <i className="fa fa-trash icon2"></i></span>);
+    let edit = (
+    <span>
+      <i className="fa fa-pencil icon"
+       onClick={()=>this.openModalHandler(i)}>
+      </i>
+      <i className="fa fa-trash icon2" onClick={()=>this.removeHandler(i)}></i>
+   </span>);
       res.push(
           <div key={i} className={classBorder} onMouseEnter={()=>this.mouseEnter(i)} onMouseLeave={()=>this.mouseLeave(i)}>
           {data.visible === true?edit:null}
@@ -116,21 +126,18 @@ closeModalHandler = () => {
               <p style={{color:'rgb(97, 97, 97)'}}>{data.text}</p>
           </div>
       )
-     
     })
     return (
       <div className="App">
-  
              { this.state.isShowing ?
- <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
-  
-    <Modal
-        show={this.state.isShowing}
-        close={this.closeModalHandler}
-        inputText={this.state.textBody}
-        backText={this.handleUpdate}
-        classInput={classInput}>
-   </Modal>
+    <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+      <Modal
+          show={this.state.isShowing}
+          close={this.closeModalHandler}
+          inputText={this.state.textBody}
+          backText={this.handleUpdate}
+          classInput={classInput}>
+    </Modal>
         <div className='indexFirst'>
          <label className="label" htmlFor="male">Note Text</label>
          <input placeholder="Enter a text body" type="text" onChange={this.handleChangeText}></input>
