@@ -28,8 +28,8 @@ class App extends Component {
   }
   handleChange(e){
     let color = e.target.value;
-    this.setState((state)=>{
-      state.color = color
+    this.setState({
+      color : color
     })
 
   }
@@ -104,6 +104,7 @@ closeModalHandler = () => {
     });
 }
   render() {
+    let classInput = this.state.isShowing ? 'showing' : 'empty'
     let res = [];
      this.state.cards.forEach((data,i)=>{
     let classBorder = 'cards ' + [data.class];
@@ -119,19 +120,18 @@ closeModalHandler = () => {
     })
     return (
       <div className="App">
-           { this.state.isShowing ?
+  
+             { this.state.isShowing ?
  <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
-
-<button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button>
-
+  
     <Modal
-        className="modal"
         show={this.state.isShowing}
         close={this.closeModalHandler}
         inputText={this.state.textBody}
-        backText={this.handleUpdate}>
+        backText={this.handleUpdate}
+        classInput={classInput}>
    </Modal>
-        <div>
+        <div className='indexFirst'>
          <label className="label" htmlFor="male">Note Text</label>
          <input placeholder="Enter a text body" type="text" onChange={this.handleChangeText}></input>
          <label className="label" htmlFor="male">Note Color</label>

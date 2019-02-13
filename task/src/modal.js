@@ -31,8 +31,9 @@ class Modal extends Component {
         })
       }
     render() {
+        console.log(this.props.classInput)
     return(
-        <div>
+        <div className={this.props.classInput}>
             <div className="modal-wrapper"
                 style={{
                     transform: this.props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
